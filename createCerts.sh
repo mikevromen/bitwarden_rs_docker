@@ -23,5 +23,5 @@ echo "creating dirs and moving certs"
 mkdir ssl
 mv bitwarden.crt bitwarden.key ssl/
 
-printf "Everything should be good to go. \\nYou might want to change some variables like backup time in the docker-compose file.\\n"
+printf "\\nEverything should be good to go. \\nYou might want to change some variables like backup time in the docker-compose file.\\n"
 printf "Run \"docker-compose up -d\" command to start the containers"
