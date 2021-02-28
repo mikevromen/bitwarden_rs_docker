@@ -1,0 +1,6 @@
+ssl
+bw-data
+*.key
+*.crt
+*.srl
+*.csr

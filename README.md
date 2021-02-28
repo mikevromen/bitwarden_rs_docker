@@ -1,0 +1,1 @@
+# bitwarden rs in docker
