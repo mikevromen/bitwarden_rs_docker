@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+
+    bitwarden:
+      image: bitwardenrs/server:latest
+      environment: 
+        - ROCKET_TLS={certs="/ssl/bitwarden.crt",key="/ssl/bitwarden.key"}
+      ports: 
+        - "8080:80"
+      volumes:
+        - ./bw-data:/data
+        - ./ssl:/ssl
+      restart: unless-stopped
+
+    bw_backup:
+      image: bruceforce/bw_backup:latest
+      restart: on-failure
+      depends_on:
+        - bitwarden
+      volumes:
+        - ./bw-data:/data
+        - ./bw-data:/backup_folder/
+      environment:
+        - DB_FILE=/data/db.sqlite3
+        - BACKUP_FILE=/backup_folder/db_backup/backup.sqlite3
+        - CRON_TIME=0 0 * * *
+        - TIMESTAMP=true
+        - UID=0
+        - GID=0
